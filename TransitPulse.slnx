@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TransitPulse.API/TransitPulse.API.csproj" />
+    <Project Path="src/TransitPulse.Application/TransitPulse.Application.csproj" />
+    <Project Path="src/TransitPulse.Domain/TransitPulse.Domain.csproj" />
+    <Project Path="src/TransitPulse.Infrastructure/TransitPulse.Infrastructure.csproj" />
+  </Folder>
+</Solution>

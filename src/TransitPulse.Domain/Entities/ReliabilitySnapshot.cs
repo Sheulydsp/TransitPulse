@@ -34,6 +34,11 @@ public class ReliabilitySnapshot
     // Timestamp when the snapshot was generated.
     public DateTime CalculatedAt { get; private set; }
 
+    private ReliabilitySnapshot()
+    {
+        // Required by EF Core
+    }
+
     public ReliabilitySnapshot(
         Guid routeId,
         double score,

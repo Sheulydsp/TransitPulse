@@ -36,7 +36,9 @@ public class ReliabilitySnapshot
 
     private ReliabilitySnapshot()
     {
-        // Required by EF Core
+
+        // Used by EF Core when materializing entities
+        // from the database.
     }
 
     public ReliabilitySnapshot(
@@ -49,6 +51,7 @@ public class ReliabilitySnapshot
         DateTime periodEnd,
         DateTime calculatedAt)
     {
+
         if (score < 0 || score > 100)
             throw new ArgumentException(
                 "Score must be between 0 and 100.",
@@ -73,6 +76,7 @@ public class ReliabilitySnapshot
             throw new ArgumentException(
                 "Period end must be after period start.");
 
+        Id = Guid.NewGuid();
         RouteId = routeId;
         Score = score;
         AverageDelay = averageDelay;

@@ -20,6 +20,18 @@ public class ReliabilityController : ControllerBase
         GenerateReliabilitySnapshotRequestDTO request,
         CancellationToken cancellationToken)
     {
+
+        if (request.RouteId == Guid.Empty)
+        {
+            return BadRequest(
+                "RouteId is required.");
+        }
+
+        if (request.PeriodEnd <= request.PeriodStart)
+        {
+            return BadRequest(
+                "PeriodEnd must be after PeriodStart.");
+        }
         var command =
         new GenerateReliabilitySnapshotCommand(
             request.RouteId,
@@ -40,4 +52,12 @@ public class ReliabilityController : ControllerBase
     {
         return Ok("TransitPulse API is running");
     }
+
+    // test exception
+    /*[HttpGet("test-error")]
+    public IActionResult TestError()
+    {
+        throw new Exception(
+        "Test exception from TransitPulse.");
+    }*/
 }

@@ -2,6 +2,7 @@ using TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot;
 using TransitPulse.Application.Interfaces;
 using TransitPulse.Infrastructure.Repositories;
 using TransitPulse.Infrastructure.Services;
+using TransitPulse.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddSingleton<IReliabilityCalculator, ReliabiltyCalculator>();
 builder.Services.AddScoped<GenerateReliabilitySnapshotHandler>();
 
 var app = builder.Build();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

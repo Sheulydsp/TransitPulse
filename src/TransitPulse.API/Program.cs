@@ -3,12 +3,16 @@ using TransitPulse.Application.Interfaces;
 using TransitPulse.Infrastructure.Repositories;
 using TransitPulse.Infrastructure.Services;
 using TransitPulse.API.Middleware;
+using Microsoft.EntityFrameworkCore;
+using TransitPulse.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
 builder.Services.AddOpenApi();
+builder.Services.AddDbContext<TransitPulseDbContext>(
+    options => options.UseNpgsql(builder.Configuration.GetConnectionString("TransitPulseDb")));
 
 builder.Services.AddSingleton<IRouteEventRepository, InMemoryRouteEventRepository>();
 

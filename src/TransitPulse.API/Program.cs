@@ -5,6 +5,7 @@ using TransitPulse.Infrastructure.Services;
 using TransitPulse.API.Middleware;
 using Microsoft.EntityFrameworkCore;
 using TransitPulse.Infrastructure.Persistence;
+using TransitPulse.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,10 @@ builder.Services.AddDbContext<TransitPulseDbContext>(
 
 builder.Services.AddSingleton<IRouteEventRepository, InMemoryRouteEventRepository>();
 
-builder.Services.AddSingleton<IReliabilitySnapshotRepository, InMemoryReliabilitySnapshotRepository>();
+builder.Services.AddScoped<
+    IReliabilitySnapshotRepository,
+    ReliabilitySnapshotRepository>();
+
 
 builder.Services.AddSingleton<IReliabilityCalculator, ReliabiltyCalculator>();
 

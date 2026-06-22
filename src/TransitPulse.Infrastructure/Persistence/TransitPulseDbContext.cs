@@ -13,6 +13,9 @@ public class TransitPulseDbContext : DbContext
     public DbSet<ReliabilitySnapshot>
         ReliabilitySnapshots => Set<ReliabilitySnapshot>();
 
+    public DbSet<RouteEvent>
+       RouteEvents => Set<RouteEvent>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(

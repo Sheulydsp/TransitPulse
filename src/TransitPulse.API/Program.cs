@@ -15,11 +15,9 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<TransitPulseDbContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("TransitPulseDb")));
 
-builder.Services.AddSingleton<IRouteEventRepository, InMemoryRouteEventRepository>();
+builder.Services.AddScoped<IRouteEventRepository, RouteEventRepository>();
 
-builder.Services.AddScoped<
-    IReliabilitySnapshotRepository,
-    ReliabilitySnapshotRepository>();
+builder.Services.AddScoped<IReliabilitySnapshotRepository, ReliabilitySnapshotRepository>();
 
 
 builder.Services.AddSingleton<IReliabilityCalculator, ReliabiltyCalculator>();

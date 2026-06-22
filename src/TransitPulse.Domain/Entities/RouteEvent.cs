@@ -16,6 +16,10 @@ public class RouteEvent
 
     // Indicates whether the trip was cancelled.
     public bool IsCancelled { get; private set; }
+    private RouteEvent()
+    {
+        // Required by EF Core
+    }
 
     public RouteEvent(
         Guid routeId,
@@ -24,6 +28,8 @@ public class RouteEvent
         DateTime actualTime,
         bool isCancelled)
     {
+        Id = Guid.NewGuid();
+
         RouteId = routeId;
         StopId = stopId;
         ScheduledTime = scheduledTime;
@@ -31,9 +37,6 @@ public class RouteEvent
         IsCancelled = isCancelled;
     }
 
-    /// Delay is calculated instead of stored to prevent
-    // ScheduledTime, ActualTime, and DelayMinutes
-    // from becoming inconsistent.
     public int DelayMinutes =>
         IsCancelled
             ? 0

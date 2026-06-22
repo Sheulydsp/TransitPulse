@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitPulse.API.Contracts;
 using TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot;
+using TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots;
 
 namespace TransitPulse.API.Controllers;
 
@@ -8,11 +9,14 @@ namespace TransitPulse.API.Controllers;
 [Route("api/[controller]")]
 public class ReliabilityController : ControllerBase
 {
-    private readonly GenerateReliabilitySnapshotHandler _handler;
+    private readonly GenerateReliabilitySnapshotHandler _generateHandler;
 
-    public ReliabilityController(GenerateReliabilitySnapshotHandler handler)
+    private readonly GetReliabilitySnapshotsHandler _getSnapshotsHandler;
+
+    public ReliabilityController(GenerateReliabilitySnapshotHandler handler, GetReliabilitySnapshotsHandler getSnapshotsHandler)
     {
-        _handler = handler;
+        _generateHandler = handler;
+        _getSnapshotsHandler = getSnapshotsHandler;
     }
 
     [HttpPost("snapshots/generate")]
@@ -39,7 +43,7 @@ public class ReliabilityController : ControllerBase
             request.PeriodEnd);
 
         var result =
-            await _handler.HandleAsync(
+            await _generateHandler.HandleAsync(
                 command,
                 cancellationToken);
 
@@ -47,6 +51,15 @@ public class ReliabilityController : ControllerBase
 
 
     }
+
+    [HttpGet("routes/{routeId}/snapshots")]
+    public async Task<IActionResult> GetSnapshots(Guid routeId, CancellationToken cancellationToken)
+    {
+        var result = await _getSnapshotsHandler.HandleAsync(routeId, cancellationToken);
+
+        return Ok(result);
+    }
+
     [HttpGet("health")]
     public IActionResult Health()
     {

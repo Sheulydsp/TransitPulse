@@ -15,4 +15,10 @@ public class InMemoryReliabilitySnapshotRepository : IReliabilitySnapshotReposit
 
         return Task.CompletedTask;
     }
+
+    public Task<IReadOnlyList<ReliabilitySnapshot>> GetByRouteAsync(Guid routeId,
+        CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
 }

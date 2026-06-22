@@ -6,6 +6,7 @@ using TransitPulse.API.Middleware;
 using Microsoft.EntityFrameworkCore;
 using TransitPulse.Infrastructure.Persistence;
 using TransitPulse.Domain.Entities;
+using TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ builder.Services.AddScoped<IReliabilitySnapshotRepository, ReliabilitySnapshotRe
 
 
 builder.Services.AddSingleton<IReliabilityCalculator, ReliabiltyCalculator>();
+builder.Services.AddScoped<GetReliabilitySnapshotsHandler>();
 
 builder.Services.AddScoped<GenerateReliabilitySnapshotHandler>();
 

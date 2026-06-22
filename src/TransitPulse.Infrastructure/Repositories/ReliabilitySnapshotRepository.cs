@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using TransitPulse.Application.Interfaces;
 using TransitPulse.Domain.Entities;
 using TransitPulse.Infrastructure.Persistence;
@@ -17,5 +18,13 @@ public class ReliabilitySnapshotRepository : IReliabilitySnapshotRepository
         //throw new NotImplementedException();
         await _context.SaveChangesAsync(cancellationToken);
         Console.WriteLine("Snapshot saved to PostgreSQL");
+    }
+
+    public async Task<IReadOnlyList<ReliabilitySnapshot>> GetByRouteAsync(Guid routeId, CancellationToken cancellationToken)
+    {
+        return await _context.ReliabilitySnapshots
+        .Where(snapshot => snapshot.RouteId == routeId)
+        .OrderByDescending(snapshot => snapshot.CalculatedAt)
+        .ToListAsync(cancellationToken);
     }
 }

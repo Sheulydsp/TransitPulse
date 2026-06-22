@@ -1,3 +1,4 @@
+using TransitPulse.Application.Exceptions;
 using TransitPulse.Application.Interfaces;
 
 namespace TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots
@@ -17,6 +18,11 @@ namespace TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots
         {
             var snapshots = await _snapshotRepository.GetByRouteAsync(routeId, cancellationToken);
 
+            if (!snapshots.Any())
+            {
+                throw new NotFoundException(
+                    $"No snapshots found for route {routeId}");
+            }
             return snapshots.Select(
                 snapshot => new GetReliabilitySnapshotsResult(
                     snapshot.Id,

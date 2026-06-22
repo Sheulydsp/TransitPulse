@@ -23,8 +23,8 @@ builder.Services.AddScoped<IReliabilitySnapshotRepository, ReliabilitySnapshotRe
 
 builder.Services.AddSingleton<IReliabilityCalculator, ReliabiltyCalculator>();
 builder.Services.AddScoped<GetReliabilitySnapshotsHandler>();
-
 builder.Services.AddScoped<GenerateReliabilitySnapshotHandler>();
+builder.Services.AddScoped<GenerateReliabilitySnapshotValidator>();
 
 var app = builder.Build();
 app.UseMiddleware<ExceptionHandlingMiddleware>();

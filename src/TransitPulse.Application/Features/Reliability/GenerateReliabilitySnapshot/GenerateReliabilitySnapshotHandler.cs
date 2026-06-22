@@ -9,21 +9,26 @@ public class GenerateReliabilitySnapshotHandler
     private readonly IRouteEventRepository _routeEventRepository;
     private readonly IReliabilityCalculator _reliabilityCalculator;
     private readonly IReliabilitySnapshotRepository _snapshotRepository;
+    private readonly GenerateReliabilitySnapshotValidator _validator;
 
     public GenerateReliabilitySnapshotHandler(
         IRouteEventRepository routeEventRepository,
         IReliabilityCalculator reliabilityCalculator,
-        IReliabilitySnapshotRepository snapshotRepository)
+        IReliabilitySnapshotRepository snapshotRepository,
+        GenerateReliabilitySnapshotValidator validator)
     {
         _routeEventRepository = routeEventRepository;
         _reliabilityCalculator = reliabilityCalculator;
         _snapshotRepository = snapshotRepository;
+        _validator = validator;
     }
 
     public async Task<GenerateReliabilitySnapshotResult> HandleAsync(
     GenerateReliabilitySnapshotCommand command,
     CancellationToken cancellationToken)
     {
+        _validator.Validate(command);
+
         var routeEvents =
             await _routeEventRepository
                 .GetByRouteAndPeriodAsync(

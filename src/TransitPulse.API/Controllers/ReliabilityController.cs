@@ -10,9 +10,7 @@ namespace TransitPulse.API.Controllers;
 public class ReliabilityController : ControllerBase
 {
     private readonly GenerateReliabilitySnapshotHandler _generateHandler;
-
     private readonly GetReliabilitySnapshotsHandler _getSnapshotsHandler;
-
     public ReliabilityController(GenerateReliabilitySnapshotHandler handler, GetReliabilitySnapshotsHandler getSnapshotsHandler)
     {
         _generateHandler = handler;
@@ -20,32 +18,15 @@ public class ReliabilityController : ControllerBase
     }
 
     [HttpPost("snapshots/generate")]
-    public async Task<IActionResult> GenerateSnapshot(
-        GenerateReliabilitySnapshotRequestDTO request,
+    public async Task<IActionResult> GenerateSnapshot(GenerateReliabilitySnapshotRequestDTO request,
         CancellationToken cancellationToken)
     {
-
-        if (request.RouteId == Guid.Empty)
-        {
-            return BadRequest(
-                "RouteId is required.");
-        }
-
-        if (request.PeriodEnd <= request.PeriodStart)
-        {
-            return BadRequest(
-                "PeriodEnd must be after PeriodStart.");
-        }
-        var command =
-        new GenerateReliabilitySnapshotCommand(
+        var command = new GenerateReliabilitySnapshotCommand(
             request.RouteId,
             request.PeriodStart,
             request.PeriodEnd);
 
-        var result =
-            await _generateHandler.HandleAsync(
-                command,
-                cancellationToken);
+        var result = await _generateHandler.HandleAsync(command, cancellationToken);
 
         return Ok(result);
 

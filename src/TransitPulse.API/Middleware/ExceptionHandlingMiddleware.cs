@@ -1,5 +1,6 @@
 using System.Text.Json;
 using TransitPulse.Application.Exceptions;
+using TransitPulse.API.Contracts;
 
 namespace TransitPulse.API.Middleware;
 
@@ -23,18 +24,18 @@ public class ExceptionHandlingMiddleware
         {
             await _next(context);
         }
-        catch (ValidationException exception)
+        catch (FluentValidation.ValidationException exception)
         {
             context.Response.StatusCode = 400;
 
             context.Response.ContentType =
                 "application/json";
 
-            var response =
-                new
-                {
-                    Error = exception.Message
-                };
+            var response = new ErrorResponse(
+                        "validation_error",
+                        exception.Errors
+                            .Select(error => error.ErrorMessage)
+                            .ToList());
 
             await context.Response.WriteAsync(
                 JsonSerializer.Serialize(response));
@@ -46,11 +47,12 @@ public class ExceptionHandlingMiddleware
             context.Response.ContentType =
                 "application/json";
 
-            var response =
-                new
-                {
-                    Error = exception.Message
-                };
+            var response = new ErrorResponse(
+            "not_found",
+            new List<string>
+            {
+                exception.Message
+            });
 
             await context.Response.WriteAsync(
                 JsonSerializer.Serialize(response));
@@ -66,11 +68,12 @@ public class ExceptionHandlingMiddleware
             context.Response.ContentType =
                 "application/json";
 
-            var response =
-                new
+            var response = new ErrorResponse(
+                "internal_server_error",
+                new List<string>
                 {
-                    Error = "An unexpected error occurred."
-                };
+                    "An unexpected error occurred."
+                });
 
             await context.Response.WriteAsync(
                 JsonSerializer.Serialize(response));

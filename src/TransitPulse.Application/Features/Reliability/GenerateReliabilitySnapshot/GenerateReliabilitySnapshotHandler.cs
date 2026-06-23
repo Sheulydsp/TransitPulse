@@ -1,3 +1,4 @@
+using FluentValidation;
 using TransitPulse.Application.Interfaces;
 using TransitPulse.Domain.Entities;
 
@@ -27,7 +28,7 @@ public class GenerateReliabilitySnapshotHandler
     GenerateReliabilitySnapshotCommand command,
     CancellationToken cancellationToken)
     {
-        _validator.Validate(command);
+        _validator.ValidateAndThrow(command);
 
         var routeEvents =
             await _routeEventRepository

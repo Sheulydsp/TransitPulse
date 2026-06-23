@@ -1,22 +1,19 @@
-using TransitPulse.Application.Exceptions;
+using FluentValidation;
 
 namespace TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot;
 
 public class GenerateReliabilitySnapshotValidator
+    : AbstractValidator<GenerateReliabilitySnapshotCommand>
 {
-    public void Validate(GenerateReliabilitySnapshotCommand command)
+    public GenerateReliabilitySnapshotValidator()
     {
-        if (command.RouteId == Guid.Empty)
-        {
-            throw new ValidationException(
-                "RouteId is required.");
-        }
+        RuleFor(x => x.RouteId)
+            .NotEmpty()
+            .WithMessage("RouteId is required.");
 
-        if (command.PeriodEnd <= command.PeriodStart)
-        {
-            throw new ValidationException(
+        RuleFor(x => x)
+            .Must(x => x.PeriodEnd > x.PeriodStart)
+            .WithMessage(
                 "PeriodEnd must be after PeriodStart.");
-        }
     }
-
 }

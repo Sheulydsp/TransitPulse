@@ -17,3 +17,7 @@ TransitPulse is a transport reliability analytics platform that helps commuters 
 - Docker
 - GitHub Actions
 - Azure
+
+## Development
+
+This project follows GitHub Actions CI and automated testing.

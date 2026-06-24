@@ -1,0 +1,1593 @@
+{
+  "TransitPulse.Application.dll": {
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Application/Features/Reliability/GetReliabilitySnapshots/GetReliabilitySnapshotsHandler.cs": {
+      "TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsHandler": {
+        "System.Void TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsHandler::.ctor(TransitPulse.Application.Interfaces.IReliabilitySnapshotRepository)": {
+          "Lines": {
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0
+          },
+          "Branches": []
+        }
+      },
+      "TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsHandler/<>c": {
+        "TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsHandler/<>c::<HandleAsync>b__2_0(TransitPulse.Domain.Entities.ReliabilitySnapshot)": {
+          "Lines": {
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0
+          },
+          "Branches": []
+        }
+      },
+      "TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsHandler/<HandleAsync>d__2": {
+        "System.Void TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsHandler/<HandleAsync>d__2::MoveNext()": {
+          "Lines": {
+            "18": 0,
+            "19": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "26": 0,
+            "35": 0
+          },
+          "Branches": [
+            {
+              "Line": 21,
+              "Offset": 175,
+              "EndOffset": 177,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 21,
+              "Offset": 175,
+              "EndOffset": 228,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Application/Features/Reliability/GetReliabilitySnapshots/GetReliabilitySnapshotsResult.cs": {
+      "TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult": {
+        "System.Guid TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult::get_SnapshotId()": {
+          "Lines": {
+            "4": 0
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult::get_Score()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult::get_AverageDelay()": {
+          "Lines": {
+            "6": 0
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult::get_CancellationRate()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult::get_OnTimePercentage()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.DateTime TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult::get_CalculatedAt()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult::.ctor(System.Guid,System.Double,System.Double,System.Double,System.Double,System.DateTime)": {
+          "Lines": {
+            "3": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Application/Features/Reliability/GetReliability/GetReliabilityQuery.cs": {
+      "TransitPulse.Application.Features.Reliability.GetReliability.GetReliabilityQuery": {
+        "System.Guid TransitPulse.Application.Features.Reliability.GetReliability.GetReliabilityQuery::get_RouteId()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Application.Features.Reliability.GetReliability.GetReliabilityQuery::.ctor(System.Guid)": {
+          "Lines": {
+            "6": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Application/Features/Reliability/GenerateReliabilitySnapshot/GenerateReliabilitySnapshotCommand.cs": {
+      "TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotCommand": {
+        "System.Guid TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotCommand::get_RouteId()": {
+          "Lines": {
+            "4": 8
+          },
+          "Branches": []
+        },
+        "System.DateTime TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotCommand::get_PeriodStart()": {
+          "Lines": {
+            "5": 8
+          },
+          "Branches": []
+        },
+        "System.DateTime TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotCommand::get_PeriodEnd()": {
+          "Lines": {
+            "6": 13
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotCommand::.ctor(System.Guid,System.DateTime,System.DateTime)": {
+          "Lines": {
+            "3": 5
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Application/Features/Reliability/GenerateReliabilitySnapshot/GenerateReliabilitySnapshotHandler.cs": {
+      "TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotHandler": {
+        "System.Void TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotHandler::.ctor(TransitPulse.Application.Interfaces.IRouteEventRepository,TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.IReliabilityCalculator,TransitPulse.Application.Interfaces.IReliabilitySnapshotRepository,TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotValidator)": {
+          "Lines": {
+            "16": 2,
+            "17": 2,
+            "18": 2,
+            "19": 2,
+            "20": 2,
+            "21": 2,
+            "22": 2,
+            "23": 2,
+            "24": 2,
+            "25": 2,
+            "26": 2
+          },
+          "Branches": []
+        }
+      },
+      "TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotHandler/<HandleAsync>d__5": {
+        "System.Void TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotHandler/<HandleAsync>d__5::MoveNext()": {
+          "Lines": {
+            "31": 2,
+            "32": 2,
+            "34": 2,
+            "35": 2,
+            "36": 2,
+            "37": 2,
+            "38": 2,
+            "39": 2,
+            "40": 2,
+            "42": 2,
+            "43": 1,
+            "44": 1,
+            "45": 1,
+            "48": 1,
+            "49": 1,
+            "50": 1,
+            "52": 1,
+            "53": 1,
+            "54": 1,
+            "55": 1,
+            "56": 1,
+            "57": 1,
+            "58": 1,
+            "59": 1,
+            "60": 1,
+            "61": 1,
+            "63": 1,
+            "64": 1,
+            "65": 1,
+            "67": 1,
+            "68": 1,
+            "69": 1,
+            "70": 1,
+            "71": 1,
+            "72": 1
+          },
+          "Branches": [
+            {
+              "Line": 42,
+              "Offset": 239,
+              "EndOffset": 241,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 42,
+              "Offset": 239,
+              "EndOffset": 253,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Application/Features/Reliability/GenerateReliabilitySnapshot/GenerateReliabilitySnapshotResult.cs": {
+      "TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotResult": {
+        "System.Guid TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotResult::get_SnapshotId()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotResult::get_Score()": {
+          "Lines": {
+            "9": 1
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotResult::get_AverageDelay()": {
+          "Lines": {
+            "10": 1
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotResult::get_CancellationRate()": {
+          "Lines": {
+            "11": 2
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotResult::.ctor(System.Guid,System.Double,System.Double,System.Double)": {
+          "Lines": {
+            "7": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Application/Features/Reliability/GenerateReliabilitySnapshot/GenerateReliabilitySnapshotValidator.cs": {
+      "TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotValidator": {
+        "System.Void TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot.GenerateReliabilitySnapshotValidator::.ctor()": {
+          "Lines": {
+            "8": 5,
+            "9": 5,
+            "10": 5,
+            "11": 5,
+            "12": 5,
+            "14": 5,
+            "15": 5,
+            "16": 5,
+            "17": 5,
+            "18": 5
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Application/Exceptions/NotFoundException.cs": {
+      "TransitPulse.Application.Exceptions.NotFoundException": {
+        "System.Void TransitPulse.Application.Exceptions.NotFoundException::.ctor(System.String)": {
+          "Lines": {
+            "5": 3
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Application/DTOs/ReliabilityDto.cs": {
+      "TransitPulse.Application.DTOs.ReliabilityDto": {
+        "System.Guid TransitPulse.Application.DTOs.ReliabilityDto::get_RouteId()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.String TransitPulse.Application.DTOs.ReliabilityDto::get_RouteName()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.DTOs.ReliabilityDto::get_Score()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.DTOs.ReliabilityDto::get_AverageDelay()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.DTOs.ReliabilityDto::get_CancellationRate()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.DTOs.ReliabilityDto::get_OnTimePercentage()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.DateTime TransitPulse.Application.DTOs.ReliabilityDto::get_PeriodStart()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.DateTime TransitPulse.Application.DTOs.ReliabilityDto::get_PeriodEnd()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.DateTime TransitPulse.Application.DTOs.ReliabilityDto::get_CalculatedAt()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Application.DTOs.ReliabilityDto::.ctor(System.Guid,System.String,System.Double,System.Double,System.Double,System.Double,System.DateTime,System.DateTime,System.DateTime)": {
+          "Lines": {
+            "6": 0,
+            "9": 0,
+            "11": 0,
+            "15": 0,
+            "18": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Application/Common/ReliabilityMetrics.cs": {
+      "TransitPulse.Application.Common.ReliabilityMetrics": {
+        "System.Double TransitPulse.Application.Common.ReliabilityMetrics::get_AverageDelay()": {
+          "Lines": {
+            "4": 3
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.Common.ReliabilityMetrics::get_CancellationRate()": {
+          "Lines": {
+            "5": 3
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.Common.ReliabilityMetrics::get_OnTimePercentage()": {
+          "Lines": {
+            "6": 2
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Application.Common.ReliabilityMetrics::get_Score()": {
+          "Lines": {
+            "7": 5
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Application.Common.ReliabilityMetrics::.ctor(System.Double,System.Double,System.Double,System.Double)": {
+          "Lines": {
+            "3": 2
+          },
+          "Branches": []
+        }
+      }
+    }
+  },
+  "TransitPulse.Domain.dll": {
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Domain/ValueObjects/Coordinates.cs": {
+      "TransitPulse.Domain.ValueObjects.Coordinates": {
+        "System.Double TransitPulse.Domain.ValueObjects.Coordinates::get_Latitude()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Domain.ValueObjects.Coordinates::get_Longitude()": {
+          "Lines": {
+            "6": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Domain.ValueObjects.Coordinates::.ctor(System.Double,System.Double)": {
+          "Lines": {
+            "3": 0,
+            "4": 0,
+            "7": 0,
+            "8": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Domain/Entities/ReliabilitySnapshot.cs": {
+      "TransitPulse.Domain.Entities.ReliabilitySnapshot": {
+        "System.Guid TransitPulse.Domain.Entities.ReliabilitySnapshot::get_Id()": {
+          "Lines": {
+            "13": 2
+          },
+          "Branches": []
+        },
+        "System.Guid TransitPulse.Domain.Entities.ReliabilitySnapshot::get_RouteId()": {
+          "Lines": {
+            "15": 1
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Domain.Entities.ReliabilitySnapshot::get_Score()": {
+          "Lines": {
+            "18": 1
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Domain.Entities.ReliabilitySnapshot::get_AverageDelay()": {
+          "Lines": {
+            "21": 1
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Domain.Entities.ReliabilitySnapshot::get_CancellationRate()": {
+          "Lines": {
+            "24": 1
+          },
+          "Branches": []
+        },
+        "System.Double TransitPulse.Domain.Entities.ReliabilitySnapshot::get_OnTimePercentage()": {
+          "Lines": {
+            "27": 1
+          },
+          "Branches": []
+        },
+        "System.DateTime TransitPulse.Domain.Entities.ReliabilitySnapshot::get_PeriodStart()": {
+          "Lines": {
+            "30": 1
+          },
+          "Branches": []
+        },
+        "System.DateTime TransitPulse.Domain.Entities.ReliabilitySnapshot::get_PeriodEnd()": {
+          "Lines": {
+            "32": 1
+          },
+          "Branches": []
+        },
+        "System.DateTime TransitPulse.Domain.Entities.ReliabilitySnapshot::get_CalculatedAt()": {
+          "Lines": {
+            "35": 1
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Domain.Entities.ReliabilitySnapshot::.ctor()": {
+          "Lines": {
+            "37": 0,
+            "38": 0,
+            "42": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Domain.Entities.ReliabilitySnapshot::.ctor(System.Guid,System.Double,System.Double,System.Double,System.Double,System.DateTime,System.DateTime,System.DateTime)": {
+          "Lines": {
+            "44": 1,
+            "45": 1,
+            "46": 1,
+            "47": 1,
+            "48": 1,
+            "49": 1,
+            "50": 1,
+            "51": 1,
+            "52": 1,
+            "53": 1,
+            "55": 1,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "60": 1,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "65": 1,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "70": 1,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "75": 1,
+            "76": 0,
+            "77": 0,
+            "79": 1,
+            "80": 1,
+            "81": 1,
+            "82": 1,
+            "83": 1,
+            "84": 1,
+            "85": 1,
+            "86": 1,
+            "87": 1,
+            "88": 1
+          },
+          "Branches": [
+            {
+              "Line": 55,
+              "Offset": 18,
+              "EndOffset": 20,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 55,
+              "Offset": 18,
+              "EndOffset": 34,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 55,
+              "Offset": 37,
+              "EndOffset": 39,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 55,
+              "Offset": 37,
+              "EndOffset": 55,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 60,
+              "Offset": 69,
+              "EndOffset": 71,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 60,
+              "Offset": 69,
+              "EndOffset": 87,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            },
+            {
+              "Line": 65,
+              "Offset": 98,
+              "EndOffset": 100,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 1
+            },
+            {
+              "Line": 65,
+              "Offset": 98,
+              "EndOffset": 115,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 65,
+              "Offset": 118,
+              "EndOffset": 120,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 65,
+              "Offset": 118,
+              "EndOffset": 136,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 1
+            },
+            {
+              "Line": 70,
+              "Offset": 147,
+              "EndOffset": 149,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 1
+            },
+            {
+              "Line": 70,
+              "Offset": 147,
+              "EndOffset": 164,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 167,
+              "EndOffset": 169,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 167,
+              "EndOffset": 185,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 1
+            },
+            {
+              "Line": 75,
+              "Offset": 198,
+              "EndOffset": 200,
+              "Path": 0,
+              "Ordinal": 14,
+              "Hits": 0
+            },
+            {
+              "Line": 75,
+              "Offset": 198,
+              "EndOffset": 211,
+              "Path": 1,
+              "Ordinal": 15,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Domain/Entities/Route.cs": {
+      "TransitPulse.Domain.Entities.Route": {
+        "System.Guid TransitPulse.Domain.Entities.Route::get_Id()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String TransitPulse.Domain.Entities.Route::get_RouteCode()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String TransitPulse.Domain.Entities.Route::get_Name()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "TransitPulse.Domain.Enums.TransportType TransitPulse.Domain.Entities.Route::get_TransportType()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Domain.Entities.Route::.ctor(System.String,System.String,TransitPulse.Domain.Enums.TransportType)": {
+          "Lines": {
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0
+          },
+          "Branches": [
+            {
+              "Line": 22,
+              "Offset": 16,
+              "EndOffset": 18,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 22,
+              "Offset": 16,
+              "EndOffset": 34,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 27,
+              "Offset": 42,
+              "EndOffset": 44,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 27,
+              "Offset": 42,
+              "EndOffset": 60,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Domain/Entities/RouteEvent.cs": {
+      "TransitPulse.Domain.Entities.RouteEvent": {
+        "System.Guid TransitPulse.Domain.Entities.RouteEvent::get_Id()": {
+          "Lines": {
+            "5": 5
+          },
+          "Branches": []
+        },
+        "System.Guid TransitPulse.Domain.Entities.RouteEvent::get_RouteId()": {
+          "Lines": {
+            "7": 5
+          },
+          "Branches": []
+        },
+        "System.Guid TransitPulse.Domain.Entities.RouteEvent::get_StopId()": {
+          "Lines": {
+            "9": 5
+          },
+          "Branches": []
+        },
+        "System.DateTime TransitPulse.Domain.Entities.RouteEvent::get_ScheduledTime()": {
+          "Lines": {
+            "12": 9
+          },
+          "Branches": []
+        },
+        "System.DateTime TransitPulse.Domain.Entities.RouteEvent::get_ActualTime()": {
+          "Lines": {
+            "15": 9
+          },
+          "Branches": []
+        },
+        "System.Boolean TransitPulse.Domain.Entities.RouteEvent::get_IsCancelled()": {
+          "Lines": {
+            "18": 15
+          },
+          "Branches": []
+        },
+        "System.Int32 TransitPulse.Domain.Entities.RouteEvent::get_DelayMinutes()": {
+          "Lines": {
+            "41": 4,
+            "42": 4,
+            "43": 4
+          },
+          "Branches": [
+            {
+              "Line": 41,
+              "Offset": 6,
+              "EndOffset": 8,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 4
+            },
+            {
+              "Line": 41,
+              "Offset": 6,
+              "EndOffset": 36,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void TransitPulse.Domain.Entities.RouteEvent::.ctor()": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "22": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Domain.Entities.RouteEvent::.ctor(System.Guid,System.Guid,System.DateTime,System.DateTime,System.Boolean)": {
+          "Lines": {
+            "24": 5,
+            "25": 5,
+            "26": 5,
+            "27": 5,
+            "28": 5,
+            "29": 5,
+            "30": 5,
+            "31": 5,
+            "33": 5,
+            "34": 5,
+            "35": 5,
+            "36": 5,
+            "37": 5,
+            "38": 5
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Domain/Entities/RouteStop.cs": {
+      "TransitPulse.Domain.Entities.RouteStop": {
+        "System.Guid TransitPulse.Domain.Entities.RouteStop::get_RouteId()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.Guid TransitPulse.Domain.Entities.RouteStop::get_StopId()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 TransitPulse.Domain.Entities.RouteStop::get_SequenceNumber()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Domain.Entities.RouteStop::.ctor(System.Guid,System.Guid,System.Int32)": {
+          "Lines": {
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0
+          },
+          "Branches": [
+            {
+              "Line": 19,
+              "Offset": 14,
+              "EndOffset": 16,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 19,
+              "Offset": 14,
+              "EndOffset": 32,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Domain/Entities/Stop.cs": {
+      "TransitPulse.Domain.Entities.Stop": {
+        "System.Guid TransitPulse.Domain.Entities.Stop::get_Id()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String TransitPulse.Domain.Entities.Stop::get_Name()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "TransitPulse.Domain.ValueObjects.Coordinates TransitPulse.Domain.Entities.Stop::get_Coordinates()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Domain.Entities.Stop::.ctor(System.String,TransitPulse.Domain.ValueObjects.Coordinates)": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0
+          },
+          "Branches": [
+            {
+              "Line": 21,
+              "Offset": 16,
+              "EndOffset": 18,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 21,
+              "Offset": 16,
+              "EndOffset": 34,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    }
+  },
+  "TransitPulse.Infrastructure.dll": {
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/Persistence/Configurations/RouteEventConfiguration.cs": {
+      "RouteEventConfiguration": {
+        "System.Void RouteEventConfiguration::Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1<TransitPulse.Domain.Entities.RouteEvent>)": {
+          "Lines": {
+            "9": 0,
+            "10": 0,
+            "12": 0,
+            "13": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/Repositories/ReliabilitySnapshotRepository.cs": {
+      "ReliabilitySnapshotRepository": {
+        "System.Void ReliabilitySnapshotRepository::.ctor(TransitPulse.Infrastructure.Persistence.TransitPulseDbContext)": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0
+          },
+          "Branches": []
+        }
+      },
+      "ReliabilitySnapshotRepository/<AddAsync>d__2": {
+        "System.Void ReliabilitySnapshotRepository/<AddAsync>d__2::MoveNext()": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0
+          },
+          "Branches": []
+        }
+      },
+      "ReliabilitySnapshotRepository/<GetByRouteAsync>d__3": {
+        "System.Void ReliabilitySnapshotRepository/<GetByRouteAsync>d__3::MoveNext()": {
+          "Lines": {
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/Repositories/RouteEventRepository.cs": {
+      "RouteEventRepository": {
+        "System.Void RouteEventRepository::.ctor(TransitPulse.Infrastructure.Persistence.TransitPulseDbContext)": {
+          "Lines": {
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0
+          },
+          "Branches": []
+        }
+      },
+      "RouteEventRepository/<GetByRouteAndPeriodAsync>d__2": {
+        "System.Void RouteEventRepository/<GetByRouteAndPeriodAsync>d__2::MoveNext()": {
+          "Lines": {
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/DependencyInjection.cs": {
+      "TransitPulse.Infrastructure.DependencyInjection": {
+        "Microsoft.Extensions.DependencyInjection.IServiceCollection TransitPulse.Infrastructure.DependencyInjection::AddInfrastructureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "18": 0,
+            "19": 0,
+            "21": 0,
+            "22": 0,
+            "24": 0,
+            "25": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/Services/ReliabilityCalculator.cs": {
+      "TransitPulse.Infrastructure.Services.ReliabiltyCalculator": {
+        "TransitPulse.Application.Common.ReliabilityMetrics TransitPulse.Infrastructure.Services.ReliabiltyCalculator::Calculate(System.Collections.Generic.IEnumerable`1<TransitPulse.Domain.Entities.RouteEvent>)": {
+          "Lines": {
+            "11": 2,
+            "12": 2,
+            "13": 2,
+            "14": 1,
+            "15": 1,
+            "16": 1,
+            "19": 1,
+            "20": 3,
+            "21": 1,
+            "23": 1,
+            "24": 4,
+            "26": 1,
+            "27": 1,
+            "28": 1,
+            "29": 2,
+            "30": 1,
+            "32": 1,
+            "33": 1,
+            "34": 1,
+            "35": 1,
+            "37": 1,
+            "38": 1,
+            "39": 3,
+            "41": 1,
+            "42": 1,
+            "43": 1,
+            "44": 1,
+            "45": 1,
+            "46": 1,
+            "48": 1,
+            "50": 1,
+            "51": 1,
+            "52": 1,
+            "53": 1,
+            "54": 1,
+            "55": 1
+          },
+          "Branches": [
+            {
+              "Line": 13,
+              "Offset": 21,
+              "EndOffset": 23,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 13,
+              "Offset": 21,
+              "EndOffset": 35,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 26,
+              "Offset": 122,
+              "EndOffset": 124,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 26,
+              "Offset": 122,
+              "EndOffset": 135,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 41,
+              "Offset": 240,
+              "EndOffset": 242,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 41,
+              "Offset": 240,
+              "EndOffset": 253,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/Repositories/InMemoryReliabilitySnapshotRepository.cs": {
+      "TransitPulse.Infrastructure.Repositories.InMemoryReliabilitySnapshotRepository": {
+        "System.Threading.Tasks.Task TransitPulse.Infrastructure.Repositories.InMemoryReliabilitySnapshotRepository::AddAsync(TransitPulse.Domain.Entities.ReliabilitySnapshot,System.Threading.CancellationToken)": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "16": 0,
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.Threading.Tasks.Task`1<System.Collections.Generic.IReadOnlyList`1<TransitPulse.Domain.Entities.ReliabilitySnapshot>> TransitPulse.Infrastructure.Repositories.InMemoryReliabilitySnapshotRepository::GetByRouteAsync(System.Guid,System.Threading.CancellationToken)": {
+          "Lines": {
+            "21": 0,
+            "22": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Infrastructure.Repositories.InMemoryReliabilitySnapshotRepository::.ctor()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/Repositories/InMemoryRouteEventRepository.cs": {
+      "TransitPulse.Infrastructure.Repositories.InMemoryRouteEventRepository": {
+        "System.Threading.Tasks.Task`1<System.Collections.Generic.IReadOnlyList`1<TransitPulse.Domain.Entities.RouteEvent>> TransitPulse.Infrastructure.Repositories.InMemoryRouteEventRepository::GetByRouteAndPeriodAsync(System.Guid,System.DateTime,System.DateTime,System.Threading.CancellationToken)": {
+          "Lines": {
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "46": 0,
+            "47": 0
+          },
+          "Branches": [
+            {
+              "Line": 41,
+              "Offset": 17,
+              "EndOffset": 19,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 41,
+              "Offset": 36,
+              "EndOffset": 38,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 41,
+              "Offset": 17,
+              "EndOffset": 57,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 41,
+              "Offset": 36,
+              "EndOffset": 57,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void TransitPulse.Infrastructure.Repositories.InMemoryRouteEventRepository::.ctor()": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/Persistence/TransitPulseDbContext.cs": {
+      "TransitPulse.Infrastructure.Persistence.TransitPulseDbContext": {
+        "Microsoft.EntityFrameworkCore.DbSet`1<TransitPulse.Domain.Entities.ReliabilitySnapshot> TransitPulse.Infrastructure.Persistence.TransitPulseDbContext::get_ReliabilitySnapshots()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<TransitPulse.Domain.Entities.RouteEvent> TransitPulse.Infrastructure.Persistence.TransitPulseDbContext::get_RouteEvents()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Infrastructure.Persistence.TransitPulseDbContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "24": 0,
+            "25": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Infrastructure.Persistence.TransitPulseDbContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<TransitPulse.Infrastructure.Persistence.TransitPulseDbContext>)": {
+          "Lines": {
+            "9": 0,
+            "10": 0,
+            "11": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/Persistence/Configurations/ReliabilitySnapshotConfiguration.cs": {
+      "TransitPulse.Infrastructure.Persistence.Configurations.ReliabilitySnapshotConfiguration": {
+        "System.Void TransitPulse.Infrastructure.Persistence.Configurations.ReliabilitySnapshotConfiguration::Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1<TransitPulse.Domain.Entities.ReliabilitySnapshot>)": {
+          "Lines": {
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "15": 0,
+            "16": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "34": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/Migrations/20260619105201_InitialCreate.cs": {
+      "TransitPulse.Infrastructure.Migrations.InitialCreate": {
+        "System.Void TransitPulse.Infrastructure.Migrations.InitialCreate::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Infrastructure.Migrations.InitialCreate::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)": {
+          "Lines": {
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/Migrations/20260619105201_InitialCreate.Designer.cs": {
+      "TransitPulse.Infrastructure.Migrations.InitialCreate": {
+        "System.Void TransitPulse.Infrastructure.Migrations.InitialCreate::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "20": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "26": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "63": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/Migrations/20260620004910_AddRouteEvents.cs": {
+      "TransitPulse.Infrastructure.Migrations.AddRouteEvents": {
+        "System.Void TransitPulse.Infrastructure.Migrations.AddRouteEvents::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0
+          },
+          "Branches": []
+        },
+        "System.Void TransitPulse.Infrastructure.Migrations.AddRouteEvents::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)": {
+          "Lines": {
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/Migrations/20260620004910_AddRouteEvents.Designer.cs": {
+      "TransitPulse.Infrastructure.Migrations.AddRouteEvents": {
+        "System.Void TransitPulse.Infrastructure.Migrations.AddRouteEvents::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "20": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "26": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "89": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/sheulydebnath/TransitPulse/src/TransitPulse.Infrastructure/Migrations/TransitPulseDbContextModelSnapshot.cs": {
+      "TransitPulse.Infrastructure.Migrations.TransitPulseDbContextModelSnapshot": {
+        "System.Void TransitPulse.Infrastructure.Migrations.TransitPulseDbContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "17": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "23": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "86": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  }
+}

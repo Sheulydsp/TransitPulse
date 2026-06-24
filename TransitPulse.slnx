@@ -7,5 +7,6 @@
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/TransitPulse.Application.Tests/TransitPulse.Application.Tests.csproj" />
+    <Project Path="tests/TransitPulse.Infrastructure.Tests/TransitPulse.Infrastructure.Tests.csproj" />
   </Folder>
 </Solution>

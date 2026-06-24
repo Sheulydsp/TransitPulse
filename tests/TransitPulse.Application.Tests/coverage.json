@@ -4,11 +4,11 @@
       "TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsHandler": {
         "System.Void TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsHandler::.ctor(TransitPulse.Application.Interfaces.IReliabilitySnapshotRepository)": {
           "Lines": {
-            "11": 0,
-            "12": 0,
-            "13": 0,
-            "14": 0,
-            "15": 0
+            "11": 2,
+            "12": 2,
+            "13": 2,
+            "14": 2,
+            "15": 2
           },
           "Branches": []
         }
@@ -16,13 +16,13 @@
       "TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsHandler/<>c": {
         "TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsHandler/<>c::<HandleAsync>b__2_0(TransitPulse.Domain.Entities.ReliabilitySnapshot)": {
           "Lines": {
-            "27": 0,
-            "28": 0,
-            "29": 0,
-            "30": 0,
-            "31": 0,
-            "32": 0,
-            "33": 0
+            "27": 2,
+            "28": 2,
+            "29": 2,
+            "30": 2,
+            "31": 2,
+            "32": 2,
+            "33": 2
           },
           "Branches": []
         }
@@ -30,14 +30,14 @@
       "TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsHandler/<HandleAsync>d__2": {
         "System.Void TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsHandler/<HandleAsync>d__2::MoveNext()": {
           "Lines": {
-            "18": 0,
-            "19": 0,
-            "21": 0,
-            "22": 0,
-            "23": 0,
-            "24": 0,
-            "26": 0,
-            "35": 0
+            "18": 2,
+            "19": 2,
+            "21": 2,
+            "22": 1,
+            "23": 1,
+            "24": 1,
+            "26": 1,
+            "35": 1
           },
           "Branches": [
             {
@@ -46,7 +46,7 @@
               "EndOffset": 177,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 0
+              "Hits": 1
             },
             {
               "Line": 21,
@@ -54,7 +54,7 @@
               "EndOffset": 228,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 0
+              "Hits": 1
             }
           ]
         }
@@ -70,37 +70,37 @@
         },
         "System.Double TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult::get_Score()": {
           "Lines": {
-            "5": 0
+            "5": 1
           },
           "Branches": []
         },
         "System.Double TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult::get_AverageDelay()": {
           "Lines": {
-            "6": 0
+            "6": 1
           },
           "Branches": []
         },
         "System.Double TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult::get_CancellationRate()": {
           "Lines": {
-            "7": 0
+            "7": 1
           },
           "Branches": []
         },
         "System.Double TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult::get_OnTimePercentage()": {
           "Lines": {
-            "8": 0
+            "8": 1
           },
           "Branches": []
         },
         "System.DateTime TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult::get_CalculatedAt()": {
           "Lines": {
-            "9": 0
+            "9": 1
           },
           "Branches": []
         },
         "System.Void TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots.GetReliabilitySnapshotsResult::.ctor(System.Guid,System.Double,System.Double,System.Double,System.Double,System.DateTime)": {
           "Lines": {
-            "3": 0
+            "3": 1
           },
           "Branches": []
         }
@@ -286,7 +286,7 @@
       "TransitPulse.Application.Exceptions.NotFoundException": {
         "System.Void TransitPulse.Application.Exceptions.NotFoundException::.ctor(System.String)": {
           "Lines": {
-            "5": 3
+            "5": 6
           },
           "Branches": []
         }
@@ -425,55 +425,55 @@
       "TransitPulse.Domain.Entities.ReliabilitySnapshot": {
         "System.Guid TransitPulse.Domain.Entities.ReliabilitySnapshot::get_Id()": {
           "Lines": {
-            "13": 2
+            "13": 4
           },
           "Branches": []
         },
         "System.Guid TransitPulse.Domain.Entities.ReliabilitySnapshot::get_RouteId()": {
           "Lines": {
-            "15": 1
+            "15": 2
           },
           "Branches": []
         },
         "System.Double TransitPulse.Domain.Entities.ReliabilitySnapshot::get_Score()": {
           "Lines": {
-            "18": 1
+            "18": 3
           },
           "Branches": []
         },
         "System.Double TransitPulse.Domain.Entities.ReliabilitySnapshot::get_AverageDelay()": {
           "Lines": {
-            "21": 1
+            "21": 3
           },
           "Branches": []
         },
         "System.Double TransitPulse.Domain.Entities.ReliabilitySnapshot::get_CancellationRate()": {
           "Lines": {
-            "24": 1
+            "24": 3
           },
           "Branches": []
         },
         "System.Double TransitPulse.Domain.Entities.ReliabilitySnapshot::get_OnTimePercentage()": {
           "Lines": {
-            "27": 1
+            "27": 3
           },
           "Branches": []
         },
         "System.DateTime TransitPulse.Domain.Entities.ReliabilitySnapshot::get_PeriodStart()": {
           "Lines": {
-            "30": 1
+            "30": 2
           },
           "Branches": []
         },
         "System.DateTime TransitPulse.Domain.Entities.ReliabilitySnapshot::get_PeriodEnd()": {
           "Lines": {
-            "32": 1
+            "32": 2
           },
           "Branches": []
         },
         "System.DateTime TransitPulse.Domain.Entities.ReliabilitySnapshot::get_CalculatedAt()": {
           "Lines": {
-            "35": 1
+            "35": 3
           },
           "Branches": []
         },
@@ -487,45 +487,45 @@
         },
         "System.Void TransitPulse.Domain.Entities.ReliabilitySnapshot::.ctor(System.Guid,System.Double,System.Double,System.Double,System.Double,System.DateTime,System.DateTime,System.DateTime)": {
           "Lines": {
-            "44": 1,
-            "45": 1,
-            "46": 1,
-            "47": 1,
-            "48": 1,
-            "49": 1,
-            "50": 1,
-            "51": 1,
-            "52": 1,
-            "53": 1,
-            "55": 1,
+            "44": 2,
+            "45": 2,
+            "46": 2,
+            "47": 2,
+            "48": 2,
+            "49": 2,
+            "50": 2,
+            "51": 2,
+            "52": 2,
+            "53": 2,
+            "55": 2,
             "56": 0,
             "57": 0,
             "58": 0,
-            "60": 1,
+            "60": 2,
             "61": 0,
             "62": 0,
             "63": 0,
-            "65": 1,
+            "65": 2,
             "66": 0,
             "67": 0,
             "68": 0,
-            "70": 1,
+            "70": 2,
             "71": 0,
             "72": 0,
             "73": 0,
-            "75": 1,
+            "75": 2,
             "76": 0,
             "77": 0,
-            "79": 1,
-            "80": 1,
-            "81": 1,
-            "82": 1,
-            "83": 1,
-            "84": 1,
-            "85": 1,
-            "86": 1,
-            "87": 1,
-            "88": 1
+            "79": 2,
+            "80": 2,
+            "81": 2,
+            "82": 2,
+            "83": 2,
+            "84": 2,
+            "85": 2,
+            "86": 2,
+            "87": 2,
+            "88": 2
           },
           "Branches": [
             {
@@ -534,7 +534,7 @@
               "EndOffset": 20,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 2
             },
             {
               "Line": 55,
@@ -558,7 +558,7 @@
               "EndOffset": 55,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 1
+              "Hits": 2
             },
             {
               "Line": 60,
@@ -574,7 +574,7 @@
               "EndOffset": 87,
               "Path": 1,
               "Ordinal": 5,
-              "Hits": 1
+              "Hits": 2
             },
             {
               "Line": 65,
@@ -582,7 +582,7 @@
               "EndOffset": 100,
               "Path": 0,
               "Ordinal": 6,
-              "Hits": 1
+              "Hits": 2
             },
             {
               "Line": 65,
@@ -606,7 +606,7 @@
               "EndOffset": 136,
               "Path": 1,
               "Ordinal": 9,
-              "Hits": 1
+              "Hits": 2
             },
             {
               "Line": 70,
@@ -614,7 +614,7 @@
               "EndOffset": 149,
               "Path": 0,
               "Ordinal": 10,
-              "Hits": 1
+              "Hits": 2
             },
             {
               "Line": 70,
@@ -638,7 +638,7 @@
               "EndOffset": 185,
               "Path": 1,
               "Ordinal": 13,
-              "Hits": 1
+              "Hits": 2
             },
             {
               "Line": 75,
@@ -654,7 +654,7 @@
               "EndOffset": 211,
               "Path": 1,
               "Ordinal": 15,
-              "Hits": 1
+              "Hits": 2
             }
           ]
         }

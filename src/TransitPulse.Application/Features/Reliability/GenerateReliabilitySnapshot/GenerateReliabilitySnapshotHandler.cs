@@ -1,4 +1,5 @@
 using FluentValidation;
+using TransitPulse.Application.Exceptions;
 using TransitPulse.Application.Interfaces;
 using TransitPulse.Domain.Entities;
 
@@ -40,7 +41,7 @@ public class GenerateReliabilitySnapshotHandler
 
         if (!routeEvents.Any())
         {
-            throw new InvalidOperationException(
+            throw new NotFoundException(
                 "No route events found for the specified period.");
         }
         //Single Responsibility Principle in IReliabilityCalculator calculate

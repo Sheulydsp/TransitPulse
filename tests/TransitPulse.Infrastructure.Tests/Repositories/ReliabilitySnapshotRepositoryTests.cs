@@ -60,4 +60,88 @@ public class ReliabilitySnapshotRepositoryTests
             .Should()
             .Be(92);
     }
+
+    [Fact]
+    public async Task GetByRouteAsync_ShouldReturnSnapshotsForRouteOrderedByCalculatedAt()
+    {
+        // Arrange
+
+        var options =
+            new DbContextOptionsBuilder<TransitPulseDbContext>()
+                .UseInMemoryDatabase(
+                    Guid.NewGuid().ToString())
+                .Options;
+
+        await using var context =
+            new TransitPulseDbContext(options);
+
+        var repository =
+            new ReliabilitySnapshotRepository(
+                context);
+
+        var routeId = Guid.NewGuid();
+        var otherRouteId = Guid.NewGuid();
+
+        var olderSnapshot =
+            new ReliabilitySnapshot(
+                routeId,
+                80,
+                5,
+                15,
+                75,
+                new DateTime(2026, 1, 1),
+                new DateTime(2026, 1, 2),
+                new DateTime(2026, 1, 3));
+
+        var newerSnapshot =
+            new ReliabilitySnapshot(
+                routeId,
+                90,
+                2,
+                5,
+                95,
+                new DateTime(2026, 1, 4),
+                new DateTime(2026, 1, 5),
+                new DateTime(2026, 1, 6));
+
+        var differentRouteSnapshot =
+            new ReliabilitySnapshot(
+                otherRouteId,
+                100,
+                0,
+                0,
+                100,
+                new DateTime(2026, 1, 7),
+                new DateTime(2026, 1, 8),
+                new DateTime(2026, 1, 9));
+
+        await context.ReliabilitySnapshots.AddRangeAsync(
+            olderSnapshot,
+            newerSnapshot,
+            differentRouteSnapshot);
+
+        await context.SaveChangesAsync();
+
+        // Act
+
+        var result =
+            await repository.GetByRouteAsync(
+                routeId,
+                CancellationToken.None);
+
+        // Assert
+
+        result.Should().HaveCount(2);
+
+        result[0].Id.Should().Be(
+            newerSnapshot.Id);
+
+        result[1].Id.Should().Be(
+            olderSnapshot.Id);
+
+        result.Should()
+            .OnlyContain(
+                snapshot =>
+                    snapshot.RouteId == routeId);
+    }
 }

@@ -11,12 +11,18 @@ TransitPulse is a transport reliability analytics platform that helps commuters 
 
 ## Tech Stack
 
-- ASP.NET Core
-- PostgreSQL
+- C#
+- .NET 9
+- ASP.NET Core Web API
 - Entity Framework Core
-- Docker
-- GitHub Actions
-- Azure
+- PostgreSQL
+- Clean Architecture
+- Repository Pattern
+- Dependency Injection
+- REST API
+- xUnit
+- Moq
+- Git & GitHub
 
 ## Development
 

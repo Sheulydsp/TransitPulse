@@ -27,4 +27,14 @@ public class ReliabilitySnapshotRepository : IReliabilitySnapshotRepository
         .OrderByDescending(snapshot => snapshot.CalculatedAt)
         .ToListAsync(cancellationToken);
     }
+
+    public async Task<ReliabilitySnapshot?> GetByIdAsync(
+    Guid snapshotId,
+    CancellationToken cancellationToken)
+    {
+        return await _context.ReliabilitySnapshots
+            .FirstOrDefaultAsync(
+                snapshot => snapshot.Id == snapshotId,
+                cancellationToken);
+    }
 }

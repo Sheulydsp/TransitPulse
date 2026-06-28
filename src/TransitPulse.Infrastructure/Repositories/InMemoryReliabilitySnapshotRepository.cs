@@ -15,10 +15,25 @@ public class InMemoryReliabilitySnapshotRepository : IReliabilitySnapshotReposit
 
         return Task.CompletedTask;
     }
-
-    public Task<IReadOnlyList<ReliabilitySnapshot>> GetByRouteAsync(Guid routeId,
+    public Task<IReadOnlyList<ReliabilitySnapshot>> GetByRouteAsync(
+        Guid routeId,
         CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        IReadOnlyList<ReliabilitySnapshot> snapshots = _snapshots
+            .Where(snapshot => snapshot.RouteId == routeId)
+            .OrderByDescending(snapshot => snapshot.CalculatedAt)
+            .ToList();
+
+        return Task.FromResult(snapshots);
+    }
+
+    public Task<ReliabilitySnapshot?> GetByIdAsync(
+    Guid snapshotId,
+    CancellationToken cancellationToken)
+    {
+        var snapshot = _snapshots.FirstOrDefault(
+            snapshot => snapshot.Id == snapshotId);
+
+        return Task.FromResult(snapshot);
     }
 }

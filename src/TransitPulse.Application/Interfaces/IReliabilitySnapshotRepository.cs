@@ -7,4 +7,8 @@ public interface IReliabilitySnapshotRepository
     Task AddAsync(ReliabilitySnapshot snapshot, CancellationToken cancellationToken);
     Task<IReadOnlyList<ReliabilitySnapshot>> GetByRouteAsync(Guid routeId, CancellationToken cancellationToken);
 
+    Task<ReliabilitySnapshot?> GetByIdAsync(
+        Guid snapshotId,
+        CancellationToken cancellationToken);
+
 }

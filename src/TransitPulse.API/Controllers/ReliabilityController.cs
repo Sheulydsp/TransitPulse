@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using TransitPulse.API.Contracts;
+using TransitPulse.API.Contracts.Requests;
+using TransitPulse.API.Contracts.Responses;
 using TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot;
+using TransitPulse.Application.Features.Reliability.GetReliabilitySnapshot;
 using TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots;
 
 namespace TransitPulse.API.Controllers;
@@ -11,14 +13,19 @@ public class ReliabilityController : ControllerBase
 {
     private readonly GenerateReliabilitySnapshotHandler _generateHandler;
     private readonly GetReliabilitySnapshotsHandler _getSnapshotsHandler;
-    public ReliabilityController(GenerateReliabilitySnapshotHandler handler, GetReliabilitySnapshotsHandler getSnapshotsHandler)
+
+    private readonly GetReliabilitySnapshotHandler _getSnapshotHandler;
+    public ReliabilityController(GenerateReliabilitySnapshotHandler handler,
+            GetReliabilitySnapshotsHandler getSnapshotsHandler,
+            GetReliabilitySnapshotHandler getSnapshotHandler)
     {
         _generateHandler = handler;
         _getSnapshotsHandler = getSnapshotsHandler;
+        _getSnapshotHandler = getSnapshotHandler;
     }
 
-    [HttpPost("snapshots/generate")]
-    public async Task<IActionResult> GenerateSnapshot(GenerateReliabilitySnapshotRequestDTO request,
+    [HttpPost("snapshots")]
+    public async Task<IActionResult> GenerateSnapshot(GenerateReliabilitySnapshotRequest request,
         CancellationToken cancellationToken)
     {
         var command = new GenerateReliabilitySnapshotCommand(
@@ -28,17 +35,59 @@ public class ReliabilityController : ControllerBase
 
         var result = await _generateHandler.HandleAsync(command, cancellationToken);
 
-        return Ok(result);
+        var response = new GenerateReliabilitySnapshotResponse(
 
+            result.SnapshotId,
+            result.Score,
+            result.AverageDelay,
+            result.CancellationRate);
 
+        return CreatedAtAction(
+            nameof(GetSnapshots),
+            new { routeId = request.RouteId },
+            response);
+
+        //return Ok(result);
     }
 
     [HttpGet("routes/{routeId}/snapshots")]
     public async Task<IActionResult> GetSnapshots(Guid routeId, CancellationToken cancellationToken)
     {
-        var result = await _getSnapshotsHandler.HandleAsync(routeId, cancellationToken);
+        var snapshots = await _getSnapshotsHandler.HandleAsync(routeId, cancellationToken);
 
-        return Ok(result);
+        var response = snapshots.Select(snapshot =>
+            new GetReliabilitySnapshotResponse(
+                snapshot.SnapshotId,
+                snapshot.Score,
+                snapshot.AverageDelay,
+                snapshot.CancellationRate,
+                snapshot.OnTimePercentage,
+                snapshot.CalculatedAt))
+            .ToList();
+
+        return Ok(response);
+    }
+
+    [HttpGet("snapshots/{snapshotId}")]
+
+    public async Task<IActionResult> Getsnapshot(Guid snapshotId,
+    CancellationToken cancellationToken)
+    {
+        var snapshot = await _getSnapshotHandler.HandleAsync(snapshotId, cancellationToken);
+
+        var response = new GetReliabilitySnapshotResponse(
+                        snapshot.SnapshotId,
+                        snapshot.Score,
+                        snapshot.AverageDelay,
+                        snapshot.CancellationRate,
+                        snapshot.OnTimePercentage,
+                        snapshot.CalculatedAt);
+
+        return Ok(response);
+
+
+
+
     }
 
     [HttpGet("health")]

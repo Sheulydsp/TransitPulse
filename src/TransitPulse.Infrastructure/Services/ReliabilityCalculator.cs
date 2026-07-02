@@ -4,7 +4,7 @@ using TransitPulse.Domain.Entities;
 
 namespace TransitPulse.Infrastructure.Services;
 
-public class ReliabiltyCalculator : IReliabilityCalculator
+public class ReliabilityCalculator : IReliabilityCalculator
 {
     public ReliabilityMetrics Calculate(
    IEnumerable<RouteEvent> routeEvents)

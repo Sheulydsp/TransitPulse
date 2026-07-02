@@ -1,32 +1,20 @@
-using TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot;
-using TransitPulse.Application.Interfaces;
-using TransitPulse.Infrastructure.Repositories;
-using TransitPulse.Infrastructure.Services;
+using TransitPulse.Application;
+using TransitPulse.Infrastructure;
 using TransitPulse.API.Middleware;
-using Microsoft.EntityFrameworkCore;
-using TransitPulse.Infrastructure.Persistence;
-using TransitPulse.Domain.Entities;
-using TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+// ASP.NET Core framework
+builder.Services.AddControllers(); //Registers the Web API framework.
+builder.Services.AddOpenApi(); //Registers the OpenAPI documentation services.
 
-builder.Services.AddOpenApi();
-builder.Services.AddDbContext<TransitPulseDbContext>(
-    options => options.UseNpgsql(builder.Configuration.GetConnectionString("TransitPulseDb")));
+// Application layer
+builder.Services.AddApplicationServices(); // Registers your business logic
 
-builder.Services.AddScoped<IRouteEventRepository, RouteEventRepository>();
-
-builder.Services.AddScoped<IReliabilitySnapshotRepository, ReliabilitySnapshotRepository>();
-
-
-builder.Services.AddSingleton<IReliabilityCalculator, ReliabiltyCalculator>();
-builder.Services.AddScoped<GetReliabilitySnapshotsHandler>();
-builder.Services.AddScoped<GenerateReliabilitySnapshotHandler>();
-builder.Services.AddScoped<GenerateReliabilitySnapshotValidator>();
-
+// Infrastructure layer
+builder.Services.AddInfrastructureServices(builder.Configuration); //Registers database, repositories, and infrastructure services.
 var app = builder.Build();
+
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())

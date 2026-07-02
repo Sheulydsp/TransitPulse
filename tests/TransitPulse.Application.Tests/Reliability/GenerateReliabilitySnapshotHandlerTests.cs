@@ -5,6 +5,8 @@ using TransitPulse.Application.Exceptions;
 using TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot;
 using TransitPulse.Application.Interfaces;
 using TransitPulse.Domain.Entities;
+using Microsoft.Extensions.Logging;
+
 
 public class GenerateReliabilitySnapshotHandlerTests
 {
@@ -25,6 +27,9 @@ public class GenerateReliabilitySnapshotHandlerTests
         var validator =
             new GenerateReliabilitySnapshotValidator();
 
+        var logger =
+            new Mock<ILogger<GenerateReliabilitySnapshotHandler>>();
+
         routeEventRepository
             .Setup(repository =>
                 repository.GetByRouteAndPeriodAsync(
@@ -39,7 +44,8 @@ public class GenerateReliabilitySnapshotHandlerTests
                 routeEventRepository.Object,
                 reliabilityCalculator.Object,
                 snapshotRepository.Object,
-                validator);
+                validator,
+                logger.Object);
 
         var command =
             new GenerateReliabilitySnapshotCommand(
@@ -71,6 +77,9 @@ public class GenerateReliabilitySnapshotHandlerTests
 
         var validator =
             new GenerateReliabilitySnapshotValidator();
+
+        var logger =
+            new Mock<ILogger<GenerateReliabilitySnapshotHandler>>();
 
         var routeEvents =
             new List<RouteEvent>
@@ -116,7 +125,8 @@ public class GenerateReliabilitySnapshotHandlerTests
                 routeEventRepository.Object,
                 reliabilityCalculator.Object,
                 snapshotRepository.Object,
-                validator);
+                validator,
+                logger.Object);
 
         var command =
             new GenerateReliabilitySnapshotCommand(

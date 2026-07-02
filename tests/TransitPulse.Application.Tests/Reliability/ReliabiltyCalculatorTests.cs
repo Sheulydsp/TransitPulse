@@ -10,7 +10,7 @@ public class ReliabiltyCalculatorTests
     public void Calculate_ShouldReturnExpectedMetrics()
     {
         // Arrange
-        var calculator = new ReliabiltyCalculator();
+        var calculator = new ReliabilityCalculator();
 
         var routeEvents = new List<RouteEvent>
         {
@@ -55,7 +55,7 @@ public class ReliabiltyCalculatorTests
     public void Calculate_WithNoEvents_ShouldThrowInvalidOperationException()
     {
         // Arrange
-        var calculator = new ReliabiltyCalculator();
+        var calculator = new ReliabilityCalculator();
 
         // Act
         Action action =

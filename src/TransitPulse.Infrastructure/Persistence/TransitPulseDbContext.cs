@@ -10,6 +10,7 @@ public class TransitPulseDbContext : DbContext
     {
     }
 
+    public DbSet<Route> Routes => Set<Route>();
     public DbSet<ReliabilitySnapshot>
         ReliabilitySnapshots => Set<ReliabilitySnapshot>();
 

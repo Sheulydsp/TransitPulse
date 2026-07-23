@@ -1,8 +1,5 @@
 using FluentAssertions;
-using FluentValidation;
 using Moq;
-using TransitPulse.Application.Exceptions;
-using TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot;
 using TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots;
 using TransitPulse.Application.Interfaces;
 using TransitPulse.Domain.Entities;
@@ -13,10 +10,9 @@ public class GetReliabilitySnapshotsHandlerTests
 {
 
     [Fact]
-    public async Task HandleAsync_WithNoSnapshots_ShouldThrowNotFoundException()
+    public async Task Handle_WithNoSnapshots_ShouldReturnEmptyList()
     {
         // Arrange
-
         var snapshotRepository =
             new Mock<IReliabilitySnapshotRepository>();
 
@@ -31,21 +27,19 @@ public class GetReliabilitySnapshotsHandlerTests
             new GetReliabilitySnapshotsHandler(
                 snapshotRepository.Object);
 
-        // Act
+        var query = new GetReliabilitySnapshotsQuery(Guid.NewGuid());
 
-        Func<Task> action =
-            () => handler.HandleAsync(
-                Guid.NewGuid(),
-                CancellationToken.None);
+        // Act
+        var result = await handler.Handle(
+            query,
+            CancellationToken.None);
 
         // Assert
-
-        await action.Should()
-            .ThrowAsync<NotFoundException>();
+        result.Should().BeEmpty();
     }
 
     [Fact]
-    public async Task HandleAsync_WithSnapshots_ShouldReturnMappedResults()
+    public async Task Handle_WithSnapshots_ShouldReturnMappedResults()
     {
         // Arrange
 
@@ -81,9 +75,11 @@ public class GetReliabilitySnapshotsHandlerTests
 
         // Act
 
+        var query = new GetReliabilitySnapshotsQuery(routeId);
+
         var result =
-            await handler.HandleAsync(
-                routeId,
+            await handler.Handle(
+                query,
                 CancellationToken.None);
 
         // Assert

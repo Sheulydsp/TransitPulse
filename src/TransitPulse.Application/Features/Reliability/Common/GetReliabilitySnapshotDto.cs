@@ -1,6 +1,6 @@
-namespace TransitPulse.Application.Features.Reliability.GetReliabilitySnapshot;
+namespace TransitPulse.Application.Features.Reliability.Common;
 
-public record GetReliabilitySnapshotResult(
+public record GetReliabilitySnapshotDto(
     Guid SnapshotId,
     double Score,
     double AverageDelay,

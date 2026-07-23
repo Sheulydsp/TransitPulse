@@ -14,7 +14,7 @@ public class GetReliabilitySnapshotHandlerTests
 {
 
     [Fact]
-    public async Task HandleAsync_WithSnapshotNotFound_ShouldThrowNotFoundException()
+    public async Task Handle_WithSnapshotNotFound_ShouldThrowNotFoundException()
     {
         // Arrange
 
@@ -30,9 +30,11 @@ public class GetReliabilitySnapshotHandlerTests
 
         // Act
 
-        Func<Task> action = () => handler.HandleAsync(
-                                    Guid.NewGuid(),
-                                    CancellationToken.None);
+        var query = new GetReliabilitySnapshotQuery(Guid.NewGuid());
+
+        Func<Task> action = () => handler.Handle(
+            query,
+            CancellationToken.None);
 
         // Assert
 
@@ -40,7 +42,7 @@ public class GetReliabilitySnapshotHandlerTests
     }
 
     [Fact]
-    public async Task HandleAsync_WithSnapshot_ShouldReturnMappedResult()
+    public async Task Handle_WithSnapshot_ShouldReturnMappedResult()
     {
         // Arrange
 
@@ -69,7 +71,11 @@ public class GetReliabilitySnapshotHandlerTests
 
         // Act
 
-        var result = await handler.HandleAsync(snapshot.Id, CancellationToken.None);
+        var query = new GetReliabilitySnapshotQuery(snapshot.Id);
+
+        var result = await handler.Handle(
+            query,
+            CancellationToken.None);
 
         // Assert
 

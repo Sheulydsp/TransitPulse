@@ -14,31 +14,46 @@ public class ReliabilitySnapshot
 
     public Guid RouteId { get; private set; }
 
-    // Overall reliability score (0-100).
+    /// <summary>
+    /// Overall reliability score (0-100).
+    /// </summary>
     public double Score { get; private set; }
 
-    // Average delay in minutes.
+    public Route Route { get; private set; } = null!;
+
+    /// <summary>
+    /// Average delay in minutes.
+    /// </summary>
     public double AverageDelay { get; private set; }
 
-    // Percentage of cancelled trips.
+    /// <summary>
+    /// Percentage of cancelled trips.
+    /// </summary>
     public double CancellationRate { get; private set; }
 
-    // Percentage of trips arriving on time.
+    /// <summary>
+    /// Percentage of trips arriving on time.
+    /// </summary>
     public double OnTimePercentage { get; private set; }
 
-    // Period used for the calculation.
+    /// <summary>
+    /// Start of the reporting period (UTC).
+    /// </summary>
     public DateTime PeriodStart { get; private set; }
 
+    /// <summary>
+    /// End of the reporting period (UTC).
+    /// </summary>
     public DateTime PeriodEnd { get; private set; }
 
-    // Timestamp when the snapshot was generated.
+    /// <summary>
+    /// Timestamp when the snapshot was generated (UTC).
+    /// </summary>
     public DateTime CalculatedAt { get; private set; }
 
     private ReliabilitySnapshot()
     {
-
-        // Used by EF Core when materializing entities
-        // from the database.
+        // Required by EF Core.
     }
 
     public ReliabilitySnapshot(
@@ -51,26 +66,30 @@ public class ReliabilitySnapshot
         DateTime periodEnd,
         DateTime calculatedAt)
     {
-
         if (score < 0 || score > 100)
-            throw new ArgumentException(
-                "Score must be between 0 and 100.",
-                nameof(score));
+            throw new ArgumentOutOfRangeException(
+                nameof(score),
+                "Score must be between 0 and 100.");
 
         if (averageDelay < 0)
-            throw new ArgumentException(
-                "Average delay cannot be negative.",
-                nameof(averageDelay));
+            throw new ArgumentOutOfRangeException(
+                nameof(averageDelay),
+                "Average delay cannot be negative.");
 
         if (cancellationRate < 0 || cancellationRate > 100)
-            throw new ArgumentException(
-                "Cancellation rate must be between 0 and 100.",
-                nameof(cancellationRate));
+            throw new ArgumentOutOfRangeException(
+                nameof(cancellationRate),
+                "Cancellation rate must be between 0 and 100.");
 
         if (onTimePercentage < 0 || onTimePercentage > 100)
-            throw new ArgumentException(
-                "On-time percentage must be between 0 and 100.",
-                nameof(onTimePercentage));
+            throw new ArgumentOutOfRangeException(
+                nameof(onTimePercentage),
+                "On-time percentage must be between 0 and 100.");
+
+        // Normalize all timestamps to UTC.
+        periodStart = EnsureUtc(periodStart);
+        periodEnd = EnsureUtc(periodEnd);
+        calculatedAt = EnsureUtc(calculatedAt);
 
         if (periodEnd < periodStart)
             throw new ArgumentException(
@@ -85,5 +104,18 @@ public class ReliabilitySnapshot
         PeriodStart = periodStart;
         PeriodEnd = periodEnd;
         CalculatedAt = calculatedAt;
+    }
+
+    private static DateTime EnsureUtc(DateTime value)
+    {
+        return value.Kind switch
+        {
+            DateTimeKind.Utc => value,
+            DateTimeKind.Local => value.ToUniversalTime(),
+            DateTimeKind.Unspecified => DateTime.SpecifyKind(
+                value,
+                DateTimeKind.Utc),
+            _ => value
+        };
     }
 }

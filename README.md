@@ -27,3 +27,12 @@ TransitPulse is a transport reliability analytics platform that helps commuters 
 ## Development
 
 This project follows GitHub Actions CI and automated testing.
+
+## API Testing
+
+This project includes a Postman collection for testing all endpoints.
+
+Import:
+
+- TransitPulse.postman_collection.json
+- TransitPulse.postman_environment.json

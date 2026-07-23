@@ -3,9 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot;
 using TransitPulse.Application.Interfaces;
+using TransitPulse.Application.Services;
 using TransitPulse.Infrastructure.Persistence;
-using TransitPulse.Infrastructure.Repositories;
-using TransitPulse.Infrastructure.Services;
 
 
 namespace TransitPulse.Infrastructure;
@@ -23,6 +22,8 @@ public static class DependencyInjection
         services.AddScoped<IReliabilitySnapshotRepository, ReliabilitySnapshotRepository>();
 
         services.AddSingleton<IReliabilityCalculator, ReliabilityCalculator>();
+
+        services.AddScoped<DbSeeder>();
 
         return services;
     }

@@ -54,7 +54,34 @@ namespace TransitPulse.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RouteId");
+
                     b.ToTable("reliability_snapshots", (string)null);
+                });
+
+            modelBuilder.Entity("TransitPulse.Domain.Entities.Route", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("RouteCode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("TransportType")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Routes");
                 });
 
             modelBuilder.Entity("TransitPulse.Domain.Entities.RouteEvent", b =>
@@ -81,6 +108,22 @@ namespace TransitPulse.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("route_events", (string)null);
+                });
+
+            modelBuilder.Entity("TransitPulse.Domain.Entities.ReliabilitySnapshot", b =>
+                {
+                    b.HasOne("TransitPulse.Domain.Entities.Route", "Route")
+                        .WithMany("ReliabilitySnapshots")
+                        .HasForeignKey("RouteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Route");
+                });
+
+            modelBuilder.Entity("TransitPulse.Domain.Entities.Route", b =>
+                {
+                    b.Navigation("ReliabilitySnapshots");
                 });
 #pragma warning restore 612, 618
         }

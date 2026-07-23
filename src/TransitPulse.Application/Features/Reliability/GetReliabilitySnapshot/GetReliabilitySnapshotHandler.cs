@@ -1,9 +1,14 @@
+using MediatR;
 using TransitPulse.Application.Exceptions;
+using TransitPulse.Application.Features.Reliability.Common;
 using TransitPulse.Application.Interfaces;
 
 namespace TransitPulse.Application.Features.Reliability.GetReliabilitySnapshot;
 
 public class GetReliabilitySnapshotHandler
+    : IRequestHandler<
+        GetReliabilitySnapshotQuery,
+        GetReliabilitySnapshotDto>
 {
     private readonly IReliabilitySnapshotRepository _snapshotRepository;
 
@@ -13,21 +18,21 @@ public class GetReliabilitySnapshotHandler
         _snapshotRepository = snapshotRepository;
     }
 
-    public async Task<GetReliabilitySnapshotResult> HandleAsync(
-        Guid snapshotId,
+    public async Task<GetReliabilitySnapshotDto> Handle(
+        GetReliabilitySnapshotQuery query,
         CancellationToken cancellationToken)
     {
         var snapshot = await _snapshotRepository.GetByIdAsync(
-            snapshotId,
+            query.SnapshotId,
             cancellationToken);
 
         if (snapshot is null)
         {
             throw new NotFoundException(
-                $"Snapshot {snapshotId} was not found.");
+                $"Snapshot {query.SnapshotId} was not found.");
         }
 
-        return new GetReliabilitySnapshotResult(
+        return new GetReliabilitySnapshotDto(
             snapshot.Id,
             snapshot.Score,
             snapshot.AverageDelay,

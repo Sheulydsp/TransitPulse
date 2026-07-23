@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TransitPulse.API.Contracts.Requests;
 using TransitPulse.API.Contracts.Responses;
@@ -11,17 +12,12 @@ namespace TransitPulse.API.Controllers;
 [Route("api/[controller]")]
 public class ReliabilityController : ControllerBase
 {
-    private readonly GenerateReliabilitySnapshotHandler _generateHandler;
-    private readonly GetReliabilitySnapshotsHandler _getSnapshotsHandler;
 
-    private readonly GetReliabilitySnapshotHandler _getSnapshotHandler;
-    public ReliabilityController(GenerateReliabilitySnapshotHandler handler,
-            GetReliabilitySnapshotsHandler getSnapshotsHandler,
-            GetReliabilitySnapshotHandler getSnapshotHandler)
+    private readonly IMediator _mediator;
+
+    public ReliabilityController(IMediator mediator)
     {
-        _generateHandler = handler;
-        _getSnapshotsHandler = getSnapshotsHandler;
-        _getSnapshotHandler = getSnapshotHandler;
+        _mediator = mediator;
     }
 
     [HttpPost("snapshots")]
@@ -33,7 +29,7 @@ public class ReliabilityController : ControllerBase
             request.PeriodStart,
             request.PeriodEnd);
 
-        var result = await _generateHandler.HandleAsync(command, cancellationToken);
+        var result = await _mediator.Send(command, cancellationToken);
 
         var response = new GenerateReliabilitySnapshotResponse(
 
@@ -53,7 +49,7 @@ public class ReliabilityController : ControllerBase
     [HttpGet("routes/{routeId}/snapshots")]
     public async Task<IActionResult> GetSnapshots(Guid routeId, CancellationToken cancellationToken)
     {
-        var snapshots = await _getSnapshotsHandler.HandleAsync(routeId, cancellationToken);
+        var snapshots = await _mediator.Send(new GetReliabilitySnapshotsQuery(routeId), cancellationToken);
 
         var response = snapshots.Select(snapshot =>
             new GetReliabilitySnapshotResponse(
@@ -73,7 +69,8 @@ public class ReliabilityController : ControllerBase
     public async Task<IActionResult> Getsnapshot(Guid snapshotId,
     CancellationToken cancellationToken)
     {
-        var snapshot = await _getSnapshotHandler.HandleAsync(snapshotId, cancellationToken);
+        var snapshot = await _mediator.Send(new GetReliabilitySnapshotQuery(snapshotId),
+    cancellationToken);
 
         var response = new GetReliabilitySnapshotResponse(
                         snapshot.SnapshotId,

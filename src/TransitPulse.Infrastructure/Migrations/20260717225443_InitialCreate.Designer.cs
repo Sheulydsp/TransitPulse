@@ -12,8 +12,8 @@ using TransitPulse.Infrastructure.Persistence;
 namespace TransitPulse.Infrastructure.Migrations
 {
     [DbContext(typeof(TransitPulseDbContext))]
-    [Migration("20260620004910_AddRouteEvents")]
-    partial class AddRouteEvents
+    [Migration("20260717225443_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,34 @@ namespace TransitPulse.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RouteId");
+
                     b.ToTable("reliability_snapshots", (string)null);
+                });
+
+            modelBuilder.Entity("TransitPulse.Domain.Entities.Route", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("RouteCode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("TransportType")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Routes");
                 });
 
             modelBuilder.Entity("TransitPulse.Domain.Entities.RouteEvent", b =>
@@ -84,6 +111,22 @@ namespace TransitPulse.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("route_events", (string)null);
+                });
+
+            modelBuilder.Entity("TransitPulse.Domain.Entities.ReliabilitySnapshot", b =>
+                {
+                    b.HasOne("TransitPulse.Domain.Entities.Route", "Route")
+                        .WithMany("ReliabilitySnapshots")
+                        .HasForeignKey("RouteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Route");
+                });
+
+            modelBuilder.Entity("TransitPulse.Domain.Entities.Route", b =>
+                {
+                    b.Navigation("ReliabilitySnapshots");
                 });
 #pragma warning restore 612, 618
         }

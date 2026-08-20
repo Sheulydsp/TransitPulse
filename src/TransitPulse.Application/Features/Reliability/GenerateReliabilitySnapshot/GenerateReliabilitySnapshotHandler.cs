@@ -1,27 +1,29 @@
 using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.Logging;
 using TransitPulse.Application.Exceptions;
 using TransitPulse.Application.Interfaces;
 using TransitPulse.Domain.Entities;
-using Microsoft.Extensions.Logging;
 
 namespace TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot;
 
 public class GenerateReliabilitySnapshotHandler
+    : IRequestHandler<
+        GenerateReliabilitySnapshotCommand,
+        GenerateReliabilitySnapshotResult>
 {
-
     private readonly IRouteEventRepository _routeEventRepository;
     private readonly IReliabilityCalculator _reliabilityCalculator;
     private readonly IReliabilitySnapshotRepository _snapshotRepository;
-    private readonly GenerateReliabilitySnapshotValidator _validator;
+    private readonly IValidator<GenerateReliabilitySnapshotCommand> _validator;
     private readonly ILogger<GenerateReliabilitySnapshotHandler> _logger;
 
     public GenerateReliabilitySnapshotHandler(
         IRouteEventRepository routeEventRepository,
         IReliabilityCalculator reliabilityCalculator,
         IReliabilitySnapshotRepository snapshotRepository,
-        GenerateReliabilitySnapshotValidator validator,
-        ILogger<GenerateReliabilitySnapshotHandler> logger
-        )
+        IValidator<GenerateReliabilitySnapshotCommand> validator,
+        ILogger<GenerateReliabilitySnapshotHandler> logger)
     {
         _routeEventRepository = routeEventRepository;
         _reliabilityCalculator = reliabilityCalculator;
@@ -30,22 +32,32 @@ public class GenerateReliabilitySnapshotHandler
         _logger = logger;
     }
 
-    public async Task<GenerateReliabilitySnapshotResult> HandleAsync(
-    GenerateReliabilitySnapshotCommand command,
-    CancellationToken cancellationToken)
+    public async Task<GenerateReliabilitySnapshotResult> Handle(
+        GenerateReliabilitySnapshotCommand command,
+        CancellationToken cancellationToken)
     {
         _logger.LogInformation(
-            "Starting reliability snapshot generation for route {RouteId}.", command.RouteId);
+            "Starting reliability snapshot generation for route {RouteId}.",
+            command.RouteId);
+
+
 
         _validator.ValidateAndThrow(command);
 
-        var routeEvents =
-            await _routeEventRepository
-                .GetByRouteAndPeriodAsync(
-                    command.RouteId,
-                    command.PeriodStart,
-                    command.PeriodEnd,
-                    cancellationToken);
+        // Normalize request timestamps to UTC.
+        var periodStart = DateTime.SpecifyKind(
+            command.PeriodStart,
+            DateTimeKind.Utc);
+
+        var periodEnd = DateTime.SpecifyKind(
+            command.PeriodEnd,
+            DateTimeKind.Utc);
+
+        var routeEvents = await _routeEventRepository.GetByRouteAndPeriodAsync(
+            command.RouteId,
+            periodStart,
+            periodEnd,
+            cancellationToken);
 
         if (!routeEvents.Any())
         {
@@ -58,21 +70,18 @@ public class GenerateReliabilitySnapshotHandler
             throw new NotFoundException(
                 $"No route events found for route {command.RouteId} between {command.PeriodStart:d} and {command.PeriodEnd:d}.");
         }
-        //Single Responsibility Principle in IReliabilityCalculator calculate
-        var metrics =
-            _reliabilityCalculator.Calculate(
-                routeEvents);
 
-        var snapshot =
-            new ReliabilitySnapshot(
-                command.RouteId,
-                metrics.Score,
-                metrics.AverageDelay,
-                metrics.CancellationRate,
-                metrics.OnTimePercentage,
-                command.PeriodStart,
-                command.PeriodEnd,
-                DateTime.UtcNow);
+        var metrics = _reliabilityCalculator.Calculate(routeEvents);
+
+        var snapshot = new ReliabilitySnapshot(
+        command.RouteId,
+        metrics.Score,
+        metrics.AverageDelay,
+        metrics.CancellationRate,
+        metrics.OnTimePercentage,
+        periodStart,
+        periodEnd,
+        DateTime.UtcNow);
 
         await _snapshotRepository.AddAsync(
             snapshot,

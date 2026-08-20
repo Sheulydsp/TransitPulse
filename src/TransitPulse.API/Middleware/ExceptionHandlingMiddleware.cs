@@ -57,6 +57,56 @@ public class ExceptionHandlingMiddleware
             await context.Response.WriteAsync(
                 JsonSerializer.Serialize(response));
         }
+
+        catch (ConflictException exception)
+        {
+            context.Response.StatusCode = StatusCodes.Status409Conflict;
+
+            context.Response.ContentType = "application/json";
+
+            var response = new ErrorResponse(
+                "conflict",
+                new List<string>
+                {
+            exception.Message
+                });
+
+            await context.Response.WriteAsync(
+                JsonSerializer.Serialize(response));
+        }
+
+        catch (BadRequestException exception)
+        {
+            context.Response.StatusCode = StatusCodes.Status400BadRequest;
+
+            context.Response.ContentType = "application/json";
+
+            var response = new ErrorResponse(
+                "bad_request",
+                exception.Errors.ToList());
+
+            await context.Response.WriteAsync(
+                JsonSerializer.Serialize(response));
+        }
+
+        catch (UnauthorizedException exception)
+        {
+            context.Response.StatusCode =
+                StatusCodes.Status401Unauthorized;
+
+            context.Response.ContentType =
+                "application/json";
+
+            var response = new ErrorResponse(
+                "unauthorized",
+                new List<string>
+                {
+            exception.Message
+                });
+
+            await context.Response.WriteAsync(
+                JsonSerializer.Serialize(response));
+        }
         catch (Exception exception)
         {
             _logger.LogError(

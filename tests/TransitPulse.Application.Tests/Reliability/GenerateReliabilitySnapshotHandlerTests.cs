@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 public class GenerateReliabilitySnapshotHandlerTests
 {
     [Fact]
-    public async Task HandleAsync_WithNoRouteEvents_ShouldThrowInvalidOperationException()
+    public async Task Handle_WithNoRouteEvents_ShouldThrowInvalidOperationException()
     {
         // Arrange
 
@@ -55,14 +55,14 @@ public class GenerateReliabilitySnapshotHandlerTests
 
         // Act
 
-        Func<Task> action = () => handler.HandleAsync(command, CancellationToken.None);
+        Func<Task> action = () => handler.Handle(command, CancellationToken.None);
 
         // Assert
         await action.Should().ThrowAsync<NotFoundException>();
     }
 
     [Fact]
-    public async Task HandleAsync_WithValidRouteEvents_ShouldSaveSnapshotAndReturnResult()
+    public async Task Handle_WithValidRouteEvents_ShouldSaveSnapshotAndReturnResult()
     {
         // Arrange
 
@@ -137,7 +137,7 @@ public class GenerateReliabilitySnapshotHandlerTests
         // Act
 
         var result =
-            await handler.HandleAsync(
+            await handler.Handle(
                 command,
                 CancellationToken.None);
 

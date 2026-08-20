@@ -1,12 +1,16 @@
+using MediatR;
 using TransitPulse.Application.Exceptions;
+using TransitPulse.Application.Features.Reliability.Common;
 using TransitPulse.Application.Interfaces;
 
 namespace TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots;
 
 public class GetReliabilitySnapshotsHandler
+    : IRequestHandler<
+        GetReliabilitySnapshotsQuery,
+        List<GetReliabilitySnapshotDto>>
 {
-    private readonly IReliabilitySnapshotRepository
-        _snapshotRepository;
+    private readonly IReliabilitySnapshotRepository _snapshotRepository;
 
     public GetReliabilitySnapshotsHandler(
         IReliabilitySnapshotRepository snapshotRepository)
@@ -14,23 +18,22 @@ public class GetReliabilitySnapshotsHandler
         _snapshotRepository = snapshotRepository;
     }
 
-    public async Task<IReadOnlyList<GetReliabilitySnapshotsResult>> HandleAsync(Guid routeId, CancellationToken cancellationToken)
+    public async Task<List<GetReliabilitySnapshotDto>> Handle(
+    GetReliabilitySnapshotsQuery query,
+    CancellationToken cancellationToken)
     {
-        var snapshots = await _snapshotRepository.GetByRouteAsync(routeId, cancellationToken);
+        var snapshots = await _snapshotRepository.GetByRouteAsync(
+            query.RouteId,
+            cancellationToken);
 
-        if (!snapshots.Any())
-        {
-            throw new NotFoundException(
-                $"No snapshots found for route {routeId}");
-        }
-        return snapshots.Select(
-            snapshot => new GetReliabilitySnapshotsResult(
+        return snapshots.Select(snapshot =>
+            new GetReliabilitySnapshotDto(
                 snapshot.Id,
                 snapshot.Score,
                 snapshot.AverageDelay,
                 snapshot.CancellationRate,
                 snapshot.OnTimePercentage,
-                snapshot.CalculatedAt)).ToList();
-
+                snapshot.CalculatedAt))
+            .ToList();
     }
 }

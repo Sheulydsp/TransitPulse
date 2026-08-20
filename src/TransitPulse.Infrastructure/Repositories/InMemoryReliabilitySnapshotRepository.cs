@@ -1,3 +1,4 @@
+using TransitPulse.Application.Features.Dashboard.GetTopRoutes;
 using TransitPulse.Application.Interfaces;
 using TransitPulse.Domain.Entities;
 
@@ -35,5 +36,11 @@ public class InMemoryReliabilitySnapshotRepository : IReliabilitySnapshotReposit
             snapshot => snapshot.Id == snapshotId);
 
         return Task.FromResult(snapshot);
+    }
+
+    public Task<List<TopRouteDto>> GetTopRoutesAsync(
+    CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
     }
 }

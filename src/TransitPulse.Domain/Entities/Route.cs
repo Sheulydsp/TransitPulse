@@ -13,11 +13,22 @@ public class Route
     public string Name { get; private set; }
 
     public TransportType TransportType { get; private set; }
+    public bool IsActive { get; private set; }
+
+    public ICollection<ReliabilitySnapshot> ReliabilitySnapshots
+    { get; private set; }
+        = new List<ReliabilitySnapshot>();
+
+    private Route()
+    {
+        // Required by EF Core
+    }
 
     public Route(
         string routeCode,
         string name,
-        TransportType transportType)
+        TransportType transportType,
+        bool isActive = true)
     {
         if (string.IsNullOrWhiteSpace(routeCode))
             throw new ArgumentException(
@@ -29,8 +40,10 @@ public class Route
                 "Route name is required.",
                 nameof(name));
 
+        Id = Guid.NewGuid();
         RouteCode = routeCode;
         Name = name;
         TransportType = transportType;
+        IsActive = isActive;
     }
 }

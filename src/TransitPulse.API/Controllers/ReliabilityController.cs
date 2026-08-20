@@ -1,3 +1,5 @@
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TransitPulse.API.Contracts.Requests;
 using TransitPulse.API.Contracts.Responses;
@@ -11,21 +13,17 @@ namespace TransitPulse.API.Controllers;
 [Route("api/[controller]")]
 public class ReliabilityController : ControllerBase
 {
-    private readonly GenerateReliabilitySnapshotHandler _generateHandler;
-    private readonly GetReliabilitySnapshotsHandler _getSnapshotsHandler;
+    private readonly IMediator _mediator;
 
-    private readonly GetReliabilitySnapshotHandler _getSnapshotHandler;
-    public ReliabilityController(GenerateReliabilitySnapshotHandler handler,
-            GetReliabilitySnapshotsHandler getSnapshotsHandler,
-            GetReliabilitySnapshotHandler getSnapshotHandler)
+    public ReliabilityController(IMediator mediator)
     {
-        _generateHandler = handler;
-        _getSnapshotsHandler = getSnapshotsHandler;
-        _getSnapshotHandler = getSnapshotHandler;
+        _mediator = mediator;
     }
 
+    [Authorize(Policy = "RequireAdmin")]
     [HttpPost("snapshots")]
-    public async Task<IActionResult> GenerateSnapshot(GenerateReliabilitySnapshotRequest request,
+    public async Task<IActionResult> GenerateSnapshot(
+        GenerateReliabilitySnapshotRequest request,
         CancellationToken cancellationToken)
     {
         var command = new GenerateReliabilitySnapshotCommand(
@@ -33,10 +31,11 @@ public class ReliabilityController : ControllerBase
             request.PeriodStart,
             request.PeriodEnd);
 
-        var result = await _generateHandler.HandleAsync(command, cancellationToken);
+        var result = await _mediator.Send(
+            command,
+            cancellationToken);
 
         var response = new GenerateReliabilitySnapshotResponse(
-
             result.SnapshotId,
             result.Score,
             result.AverageDelay,
@@ -46,48 +45,51 @@ public class ReliabilityController : ControllerBase
             nameof(GetSnapshots),
             new { routeId = request.RouteId },
             response);
-
-        //return Ok(result);
     }
 
+    [Authorize]
     [HttpGet("routes/{routeId}/snapshots")]
-    public async Task<IActionResult> GetSnapshots(Guid routeId, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetSnapshots(
+        Guid routeId,
+        CancellationToken cancellationToken)
     {
-        var snapshots = await _getSnapshotsHandler.HandleAsync(routeId, cancellationToken);
+        var snapshots = await _mediator.Send(
+            new GetReliabilitySnapshotsQuery(routeId),
+            cancellationToken);
 
-        var response = snapshots.Select(snapshot =>
-            new GetReliabilitySnapshotResponse(
-                snapshot.SnapshotId,
-                snapshot.Score,
-                snapshot.AverageDelay,
-                snapshot.CancellationRate,
-                snapshot.OnTimePercentage,
-                snapshot.CalculatedAt))
+        var response = snapshots
+            .Select(snapshot =>
+                new GetReliabilitySnapshotResponse(
+                    snapshot.SnapshotId,
+                    snapshot.Score,
+                    snapshot.AverageDelay,
+                    snapshot.CancellationRate,
+                    snapshot.OnTimePercentage,
+                    snapshot.CalculatedAt))
             .ToList();
 
         return Ok(response);
     }
 
+    [Authorize]
     [HttpGet("snapshots/{snapshotId}")]
-
-    public async Task<IActionResult> Getsnapshot(Guid snapshotId,
-    CancellationToken cancellationToken)
+    public async Task<IActionResult> GetSnapshot(
+        Guid snapshotId,
+        CancellationToken cancellationToken)
     {
-        var snapshot = await _getSnapshotHandler.HandleAsync(snapshotId, cancellationToken);
+        var snapshot = await _mediator.Send(
+            new GetReliabilitySnapshotQuery(snapshotId),
+            cancellationToken);
 
         var response = new GetReliabilitySnapshotResponse(
-                        snapshot.SnapshotId,
-                        snapshot.Score,
-                        snapshot.AverageDelay,
-                        snapshot.CancellationRate,
-                        snapshot.OnTimePercentage,
-                        snapshot.CalculatedAt);
+            snapshot.SnapshotId,
+            snapshot.Score,
+            snapshot.AverageDelay,
+            snapshot.CancellationRate,
+            snapshot.OnTimePercentage,
+            snapshot.CalculatedAt);
 
         return Ok(response);
-
-
-
-
     }
 
     [HttpGet("health")]
@@ -95,12 +97,4 @@ public class ReliabilityController : ControllerBase
     {
         return Ok("TransitPulse API is running");
     }
-
-    // test exception
-    /*[HttpGet("test-error")]
-    public IActionResult TestError()
-    {
-        throw new Exception(
-        "Test exception from TransitPulse.");
-    }*/
 }

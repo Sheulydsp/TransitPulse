@@ -2,7 +2,7 @@ using TransitPulse.Application.Common;
 using TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot;
 using TransitPulse.Domain.Entities;
 
-namespace TransitPulse.Infrastructure.Services;
+namespace TransitPulse.Application.Services;
 
 public class ReliabilityCalculator : IReliabilityCalculator
 {

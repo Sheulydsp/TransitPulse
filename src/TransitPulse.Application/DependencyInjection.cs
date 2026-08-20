@@ -1,7 +1,7 @@
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using TransitPulse.Application.Features.Reliability.GenerateReliabilitySnapshot;
-using TransitPulse.Application.Features.Reliability.GetReliabilitySnapshot;
-using TransitPulse.Application.Features.Reliability.GetReliabilitySnapshots;
 
 namespace TransitPulse.Application;
 
@@ -10,13 +10,14 @@ public static class DependencyInjection
     public static IServiceCollection AddApplicationServices(
         this IServiceCollection services)
     {
-        services.AddScoped<GetReliabilitySnapshotsHandler>();
+        services.AddMediatR(cfg =>
+        {
+            cfg.RegisterServicesFromAssembly(
+                typeof(ApplicationAssemblyMarker).Assembly);
+        });
 
-        services.AddScoped<GetReliabilitySnapshotHandler>();
-
-        services.AddScoped<GenerateReliabilitySnapshotHandler>();
-
-        services.AddScoped<GenerateReliabilitySnapshotValidator>();
+        services.AddValidatorsFromAssembly(
+            typeof(ApplicationAssemblyMarker).Assembly);
 
         return services;
     }

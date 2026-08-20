@@ -2,6 +2,7 @@ using TransitPulse.Application;
 using TransitPulse.Infrastructure;
 using TransitPulse.API.Middleware;
 using TransitPulse.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,12 +32,21 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // Database seeding
+// Database initialization
 using (var scope = app.Services.CreateScope())
 {
-    var seeder = scope.ServiceProvider
-        .GetRequiredService<DbSeeder>();
+    var dbContext = scope.ServiceProvider
+        .GetRequiredService<TransitPulseDbContext>();
 
-    await seeder.SeedAsync();
+    await dbContext.Database.MigrateAsync();
+
+    if (!app.Environment.IsEnvironment("Testing"))
+    {
+        var seeder = scope.ServiceProvider
+            .GetRequiredService<DbSeeder>();
+
+        await seeder.SeedAsync();
+    }
 }
 
 app.MapControllers();

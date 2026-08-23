@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: transitpulse-postgres
+    environment:
+      POSTGRES_DB: transitpulse
+      POSTGRES_USER: transitpulse
+      POSTGRES_PASSWORD: transitpulse_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - transitpulse-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U transitpulse -d transitpulse"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: transitpulse-api:local
+    container_name: transitpulse-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+      ConnectionStrings__TransitPulseDb: "Host=postgres;Port=5432;Database=transitpulse;Username=transitpulse;Password=transitpulse_dev_password"
+      Jwt__SecretKey: "TransitPulse-Docker-Development-Secret-Key-2026"
+      Jwt__Issuer: "TransitPulse"
+      Jwt__Audience: "TransitPulseUsers"
+      Jwt__ExpiryMinutes: "60"
+    ports:
+      - "8080:8080"
+
+volumes:
+  transitpulse-postgres-data:
